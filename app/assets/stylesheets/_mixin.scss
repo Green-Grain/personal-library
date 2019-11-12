@@ -1,0 +1,17 @@
+@mixin book-info-content() {
+  background-color: $book-right-info-content_bgcolor;
+  font-size: 1.2rem;
+  line-height: 1.49rem;;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 9px;
+  border-bottom: solid 1px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+@mixin link-button() {
+  background-color: $book-link_bgcolor;
+  padding: 0 3px;
+  border: solid 2px;
+}

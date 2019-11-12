@@ -1,6 +1,8 @@
 @import "reset";
 @import "variable";
+@import "mixin";
 
 .main {
   display: flex;
+  background-color: $main_bgcolor;
 }

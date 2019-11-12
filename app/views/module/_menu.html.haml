@@ -1,26 +1,35 @@
 .menu
-  .menu__title
-    Personal Library
+  = link_to root_path do
+    .menu__title
+      .menu__title__left
+        Personal
+      = fa_icon 'leaf', class: 'menu__title__icon'
+      .menu__title__right
+        Library
   .menu__user
     .menu__user--name
       - if user_signed_in?
-        ユーザ名
+        = current_user.name
       - else
         やあ、一見さん
-    .menu__user__sign-in
-      - if user_signed_in?
-        sign out
-      - else
-        sign in
+    - @url = new_user_session_path
+    - @caption = 'Log in'
+    - if user_signed_in?
+      - @url = destroy_user_session_path 
+      - @caption = 'Log out'
+    = link_to @url do
+      .menu__user__sign-in
+        = @caption
     .menu__user__sign-up
       - if false == user_signed_in?
-        sign up
-    .menu__user__book-shelf__list
+        ユーザ登録
+    .menu__user__book-shelf
+      My書架へ
   
   .menu__search-form
     = form_tag do
       %fieldset.menu__search-form__group
-        %legend 検索
+        %legend.menu__search-form__group__caption 検索
         .menu__search-form__field
           .menu__search-form__field--caption
             = label_tag :title, '書籍名'

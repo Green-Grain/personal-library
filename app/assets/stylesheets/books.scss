@@ -3,12 +3,13 @@
 .books {
   width: calc(100% - #{$menu_width});
   height: 100vh;
+  padding: 0 10px;
   overflow: scroll;
 
   .book {
     background-color: $book_bgcolor;
     width: $book_width;
-    margin: 10px;
+    margin: 10px auto;
     padding: $book_padding;
     display: flex;
 
@@ -24,30 +25,18 @@
 
       &__info {
         width: calc(#{$book_width} - #{$book_padding} - #{$left-image_width});
-        
-        @mixin info__content() {
-          background-color: $book-right-info-content_bgcolor;
-          font-size: 1.2rem;
-          line-height: 1.49rem;;
-          width: 100%;
-          padding: 5px;
-          margin-bottom: 10px;
-          border-bottom: solid 1px;
-          box-sizing: border-box;
-          display: flex;
-        }
 
         &--title {
-          @include info__content();
+          @include book-info-content();
         }
         &--author {
-          @include info__content();
+          @include book-info-content();
         }
         &--publisher {
-          @include info__content();
+          @include book-info-content();
         }
         &--isbn {
-          @include info__content();
+          @include book-info-content();
         }
         .caption {
           width: 100px;
@@ -64,7 +53,7 @@
 
         &__evaluation {
           font-size: 0.8rem;
-          margin-left: 10px;
+          margin: 2px 0 0 10px;
           display: flex;
 
           &--positive {
@@ -78,14 +67,13 @@
           }
         }
         &__edit {
-          background-color: $tmp_bgcolor;
+          @include link-button();
         }
         &__link {
           display: flex;
           justify-content: space-between;
           &--rakuten {
-            background-color: $book-link_bgcolor;
-            padding: 0 3px;
+            @include link-button();
           }
           // &--amazon {
           //   margin-left: 10px;

@@ -5,29 +5,49 @@
   width: $menu_width;
   height: 100vh;
   &__title {
-    
+    background-color: $menu-title_bgcolor;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: solid 1px;
+    font-size: 1.6rem;
+    line-height: 3;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    &__left {
+      display: inline;
+    }
+    &__icon {
+      display: inline;
+    }
+    &__right {
+      display: inline;
+    }
   }
   &__user {
+    padding: 10px;
+
     &--name {
 
     }
     &--sign-in {
-
+      @include link-button();
     }
     &--sign-up {
-      
+      @include link-button();
     }
     &__book-shelf {
-      &__list {
-
-      }
+      @include link-button();
     }
   }
   &__search-form {
     &__group {
-      border: solid 1px;
+      border: dotted 1px;
+      background-color: $menu_search-form_group_bgcolor;
       margin: 0 10px;
       padding: 0 0 10px 5px;
+      &__caption {
+      }
     }
     &__field {
       padding: 3px 0 3px 3px;
