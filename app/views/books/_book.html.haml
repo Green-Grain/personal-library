@@ -1,0 +1,30 @@
+.book
+  .book__left
+    .book__left__image
+      IMAGE
+    .book__left__link
+      .book__left__link--rakuten
+        LinkRKTN
+      .book__left__link--amazon
+        LinkAMZN
+  .book__right
+    .book__right__info
+      .book__right__info--title
+        %span.caption 書籍名
+        %span.content Title
+      .book__right__info--author
+        %span.caption 著者
+        %span.content Author
+      .book__right__info--publisher
+        %span.caption 出版社
+        %span.content Publisher
+      .book__right__info--isbn
+        %span.caption ISBN
+        %span.content XXXX-XXXX-XXXX
+    .book__right__evaluation
+      .book__right__evaluation--positive
+        = fa_icon 'thumbs-up', class: 'icon'
+        10
+      .book__right__evaluation--negative
+        = fa_icon 'thumbs-down', class: 'icon'
+        5

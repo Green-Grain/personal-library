@@ -1,3 +1,83 @@
-// Place all the styles related to the books controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "reset";
+@import "variable";
+
+.book {
+  background-color: $book_bgcolor;
+  width: $book_width;
+  margin: 10px;
+  padding: 10px 10px 0 10px;
+  display: flex;
+
+  &__left {
+    &__image {
+      width: $left-image_width;
+      height: $left-image_height;
+      border: solid 1px;
+      margin-bottom: 5px;
+
+    }
+    &__link {
+      padding: 0 5px;
+      display: flex;
+      justify-content: space-between;
+      &--rakuten {
+        background-color: #aaa;
+      }
+      &--amazon {
+        background-color: #aaa;
+      }
+    }
+  }
+  &__right {
+    margin: 0 10px 5px;
+
+    &__info {
+      width: 600px;
+      
+      @mixin info__content() {
+        background-color: $book-right-info-content_bgcolor;
+        font-size: 1.2rem;
+        line-height: 2.0rem;;
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-bottom: solid 1px;
+        display: flex;
+      }
+
+      &--title {
+        @include info__content();
+      }
+      &--author {
+        @include info__content();
+      }
+      &--publisher {
+        @include info__content();
+      }
+      &--isbn {
+        @include info__content();
+      }
+      .caption {
+        width: 100px;
+      }
+      .content {
+        width: 100%;
+      }
+    }
+    &__evaluation {
+      font-size: 0.8rem;
+      margin-bottom: 2px;
+      display: flex;
+
+      &--positive {
+
+      }
+      &--negative {
+        margin-left: 20px;
+      }
+      .icon {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
