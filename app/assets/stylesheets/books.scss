@@ -1,82 +1,97 @@
-@import "reset";
-@import "variable";
+@import "main";
 
-.book {
-  background-color: $book_bgcolor;
-  width: $book_width;
-  margin: 10px;
-  padding: 10px 10px 0 10px;
-  display: flex;
+.books {
+  width: calc(100% - #{$menu_width});
+  height: 100vh;
+  overflow: scroll;
 
-  &__left {
-    &__image {
-      width: $left-image_width;
-      height: $left-image_height;
-      border: solid 1px;
-      margin-bottom: 5px;
+  .book {
+    background-color: $book_bgcolor;
+    width: $book_width;
+    margin: 10px;
+    padding: $book_padding;
+    display: flex;
 
-    }
-    &__link {
-      padding: 0 5px;
-      display: flex;
-      justify-content: space-between;
-      &--rakuten {
-        background-color: #aaa;
-      }
-      &--amazon {
-        background-color: #aaa;
+    &__left {
+      &__image {
+        width: $left-image_width;
+        height: $left-image_height;
+        text-align: center;
       }
     }
-  }
-  &__right {
-    margin: 0 10px 5px;
+    &__right {
+      margin-left: 10px;
 
-    &__info {
-      width: 600px;
-      
-      @mixin info__content() {
-        background-color: $book-right-info-content_bgcolor;
-        font-size: 1.2rem;
-        line-height: 2.0rem;;
+      &__info {
+        width: calc(#{$book_width} - #{$book_padding} - #{$left-image_width});
+        
+        @mixin info__content() {
+          background-color: $book-right-info-content_bgcolor;
+          font-size: 1.2rem;
+          line-height: 1.49rem;;
+          width: 100%;
+          padding: 5px;
+          margin-bottom: 10px;
+          border-bottom: solid 1px;
+          box-sizing: border-box;
+          display: flex;
+        }
+
+        &--title {
+          @include info__content();
+        }
+        &--author {
+          @include info__content();
+        }
+        &--publisher {
+          @include info__content();
+        }
+        &--isbn {
+          @include info__content();
+        }
+        .caption {
+          width: 100px;
+        }
+        .content {
+          width: 100%;
+        }
+      }
+      &__supplement {
         width: 100%;
-        padding: 5px;
-        margin-bottom: 10px;
-        border-bottom: solid 1px;
+        margin-top: -3px;
         display: flex;
-      }
+        justify-content: space-between;
 
-      &--title {
-        @include info__content();
-      }
-      &--author {
-        @include info__content();
-      }
-      &--publisher {
-        @include info__content();
-      }
-      &--isbn {
-        @include info__content();
-      }
-      .caption {
-        width: 100px;
-      }
-      .content {
-        width: 100%;
-      }
-    }
-    &__evaluation {
-      font-size: 0.8rem;
-      margin-bottom: 2px;
-      display: flex;
+        &__evaluation {
+          font-size: 0.8rem;
+          margin-left: 10px;
+          display: flex;
 
-      &--positive {
+          &--positive {
 
-      }
-      &--negative {
-        margin-left: 20px;
-      }
-      .icon {
-        font-size: 1.2rem;
+          }
+          &--negative {
+            margin-left: 30px;
+          }
+          .icon {
+            font-size: 1.2rem;
+          }
+        }
+        &__edit {
+          background-color: $tmp_bgcolor;
+        }
+        &__link {
+          display: flex;
+          justify-content: space-between;
+          &--rakuten {
+            background-color: $book-link_bgcolor;
+            padding: 0 3px;
+          }
+          // &--amazon {
+          //   margin-left: 10px;
+          //   background-color: $tmp_bgcolor;
+          // }
+        }
       }
     }
   }

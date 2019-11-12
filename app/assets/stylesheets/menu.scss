@@ -1,0 +1,50 @@
+@import "main";
+
+.menu {
+  background-color: $menu_bgcolor;
+  width: $menu_width;
+  height: 100vh;
+  &__title {
+    
+  }
+  &__user {
+    &--name {
+
+    }
+    &--sign-in {
+
+    }
+    &--sign-up {
+      
+    }
+    &__book-shelf {
+      &__list {
+
+      }
+    }
+  }
+  &__search-form {
+    &__group {
+      border: solid 1px;
+      margin: 0 10px;
+      padding: 0 0 10px 5px;
+    }
+    &__field {
+      padding: 3px 0 3px 3px;
+      &--caption {
+        width: 60px;
+        display: inline-block;
+      }
+      &--input {
+        display: inline-block;
+        
+      }
+    }
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

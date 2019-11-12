@@ -1,0 +1,38 @@
+.menu
+  .menu__title
+    Personal Library
+  .menu__user
+    .menu__user--name
+      - if user_signed_in?
+        ユーザ名
+      - else
+        やあ、一見さん
+    .menu__user__sign-in
+      - if user_signed_in?
+        sign out
+      - else
+        sign in
+    .menu__user__sign-up
+      - if false == user_signed_in?
+        sign up
+    .menu__user__book-shelf__list
+  
+  .menu__search-form
+    = form_tag do
+      %fieldset.menu__search-form__group
+        %legend 検索
+        .menu__search-form__field
+          .menu__search-form__field--caption
+            = label_tag :title, '書籍名'
+          .menu__search-form__field--input
+            = text_field_tag :title_input, '', class: 'menu__search-form__field--input'
+        .menu__search-form__field
+          %span.menu__search-form__field--caption
+            = label_tag :author, '著者名'
+          %span.menu__search-form__field--input
+            = text_field_tag :author_input, '', class: 'menu__search-form__field--input'
+        .menu__search-form__field
+          %span.menu__search-form__field--caption
+            = label_tag :isbn, 'ISBN'
+          %span.menu__search-form__field--input
+            = number_field_tag :isbn_input, '', class: 'menu__search-form__field--input', maxlength: 13
