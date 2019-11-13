@@ -27,7 +27,7 @@
     - if user_signed_in?
       .menu__user__book-shelf
         -# ログインユーザのbook一覧表示
-        = link_to root_path do
+        = link_to users_path do
           = fa_icon 'book'
           My書架
     - else
