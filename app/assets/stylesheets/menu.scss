@@ -27,17 +27,21 @@
   &__user {
     padding: 10px;
 
-    &--name {
+    &__name {
 
     }
-    &--sign-in {
-      @include link-button();
+    &__sign-in {
+      @include menu-button();
+
+      &__icon {
+        font-size: 1.5rem;
+      }
     }
-    &--sign-up {
-      @include link-button();
+    &__sign-up {
+      @include menu-button();
     }
     &__book-shelf {
-      @include link-button();
+      @include menu-button();
     }
   }
   &__search-form {
@@ -45,6 +49,7 @@
       border: dotted 1px;
       background-color: $menu_search-form_group_bgcolor;
       margin: 0 10px;
+      margin-top: 40px;
       padding: 0 0 10px 5px;
       &__caption {
       }

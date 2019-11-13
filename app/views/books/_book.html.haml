@@ -11,7 +11,10 @@
       .book__right__info--author
         %span.caption 著者
         %span.content
-          = book.author.name
+          - @authors_name = ''
+          - book.authors.each do |author|
+            - @authors_name += "#{author.name}／"
+          = @authors_name.chop # 末尾の／を削除
       .book__right__info--publisher
         %span.caption 出版社
         %span.content

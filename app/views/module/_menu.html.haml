@@ -3,33 +3,45 @@
     .menu__title
       .menu__title__left
         Personal
-      = fa_icon 'leaf', class: 'menu__title__icon'
+      = fa_icon 'leaf'
       .menu__title__right
         Library
   .menu__user
-    .menu__user--name
-      - if user_signed_in?
-        = current_user.name
-      - else
-        やあ、一見さん
+    - @user_name = 'やあ、一見さん'
     - @url = new_user_session_path
+    - @action = "get"
     - @caption = 'Log in'
+    - @fa_icon_sign = 'sign-in'
     - if user_signed_in?
+      - @user_name = "よく来たな、#{current_user.name}"
       - @url = destroy_user_session_path 
+      - @action = "delete"
       - @caption = 'Log out'
-    = link_to @url do
-      .menu__user__sign-in
+      - @fa_icon_sign = 'sign-out'
+    .menu__user__name
+      = @user_name
+    .menu__user__sign-in
+      = link_to @url, method: @action do
+        = fa_icon "#{@fa_icon_sign}", class: 'menu__user__sign-in__icon'
         = @caption
-    .menu__user__sign-up
-      - if false == user_signed_in?
-        ユーザ登録
-    .menu__user__book-shelf
-      My書架へ
+    - if user_signed_in?
+      .menu__user__book-shelf
+        -# ログインユーザのbook一覧表示
+        = link_to root_path do
+          = fa_icon 'book'
+          My書架
+    - else
+      .menu__user__sign-up
+        = link_to new_user_registration_path do
+          = fa_icon 'user-plus'
+          ユーザ登録
   
   .menu__search-form
     = form_tag do
       %fieldset.menu__search-form__group
-        %legend.menu__search-form__group__caption 検索
+        %legend.menu__search-form__group__caption
+          = fa_icon 'search'
+          検索
         .menu__search-form__field
           .menu__search-form__field--caption
             = label_tag :title, '書籍名'

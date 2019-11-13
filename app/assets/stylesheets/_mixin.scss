@@ -10,6 +10,13 @@
   display: flex;
 }
 
+@mixin menu-button() {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  line-height: 2;
+  border-bottom: solid 1px;
+}
+
 @mixin link-button() {
   background-color: $book-link_bgcolor;
   padding: 0 3px;

@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
   def index
-    # @books = Book.all.includes(:user, :evaluation)
-    @books = Book.all
+    @books = Book.includes(:publisher)
   end
 end
