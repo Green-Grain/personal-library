@@ -14,4 +14,7 @@ class Book < ApplicationRecord
     self.includes(:publisher, :authors, :evaluations).where('isbn LIKE ?', "%#{keyword}%")
   end
   
+  def self.find_auhtor_name(keyword)
+    self.includes(:publisher, :authors, :evaluations).joins(:authors).where('authors.name LIKE ?', "%#{author}%")
+  end
 end

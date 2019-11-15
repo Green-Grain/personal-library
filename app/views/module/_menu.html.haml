@@ -35,13 +35,37 @@
         = link_to new_user_registration_path do
           = fa_icon 'user-plus'
           ユーザ登録
-  
+
+  -# DBから検索
   .menu__search-form
     = form_tag do
       %fieldset.menu__search-form__group
         %legend.menu__search-form__group__caption
           = fa_icon 'search'
-          検索
+          書架から検索
+        .menu__search-form__field
+          .menu__search-form__field__caption
+            = label_tag :title, '書籍名'
+          .menu__search-form__field__input
+            = text_field_tag :book_title_shelf, '', class: 'menu__search-form__field__input__shelf'
+        .menu__search-form__field
+          .menu__search-form__field__caption
+            = label_tag :author, '著者名'
+          .menu__search-form__field__input
+            = text_field_tag :book_author_shelf, '', class: 'menu__search-form__field__input__shelf'
+        .menu__search-form__field
+          .menu__search-form__field__caption
+            = label_tag :isbn, 'ISBN'
+          .menu__search-form__field__input
+            = number_field_tag :book_isbn_shelf, '', class: 'menu__search-form__field__input__shelf', placeholder: "13桁の数字を入力", maxlength: 13
+
+  -# 外部サイト（楽天）から検索
+  .menu__search-form
+    = form_tag do
+      %fieldset.menu__search-form__group
+        %legend.menu__search-form__group__caption
+          = fa_icon 'search'
+          楽天から検索
         .menu__search-form__field
           .menu__search-form__field__caption
             = label_tag :title, '書籍名'
@@ -57,3 +81,4 @@
             = label_tag :isbn, 'ISBN'
           .menu__search-form__field__input
             = number_field_tag :isbn_input, '', class: 'menu__search-form__field__input__isbn', placeholder: "13桁の数字を入力", maxlength: 13
+        = submit_tag '検索', class: 'menu__search-form__find-btn', id: 'external-find-btn'

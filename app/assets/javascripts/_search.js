@@ -1,9 +1,13 @@
 $(document).on('turbolinks:load', function() {
+  // books要素再構築
+  var restructureBooksTreeElement = function(results) {
+    // ToDo
+  }
   // インクリメンタルサーチ実行
   var execIncrementalSearch = function () { 
-    var inputTitle  = $('#title_input').val();
-    var inputAuthor = $('#author_input').val();
-    var inputIsbn   = $('#isbn_input').val();
+    var inputTitle  = $('#book_title_shelf').val();
+    var inputAuthor = $('#book_author_shelf').val();
+    var inputIsbn   = $('#book_isbn_shelf').val();
     $.ajax({
       type:     'GET',
       url:      '/api/books',
@@ -12,31 +16,24 @@ $(document).on('turbolinks:load', function() {
         author: inputAuthor,
         isbn:   inputIsbn
       },
-      dataType:     'json',
-      // processData:  true,
-      // contentType:  false
+      dataType: 'json'
     })
     .done(function(result) {
       console.log(result);
+      // resultでbooks要素を再構築
     })
     .fail(function(data) {
-      
+      console.log('failed incremental search');
     })
   }
-  // title 文字入力 callback
-  $('.menu__search-form__field__input__title').on('keyup', function(e) {
+  // 書架から検索 文字入力 callback
+  $('.menu__search-form__field__input__shelf').on('keyup', function(e) {
     e.preventDefault();
     execIncrementalSearch();
   })
-  // author 文字入力 callback
-  $('.menu__search-form__field__input__author').on('keyup', function(e) {
+  // 外部サイトから書籍情報を検索
+  $('#external-find-btn').on('click', function(e) {
     e.preventDefault();
-    execIncrementalSearch();
+    console.log('OnSubmit');
   })
-  // isbn 文字入力 callback
-  $('.menu__search-form__field__input__isbn').on('keyup', function(e) {
-    e.preventDefault();
-    execIncrementalSearch();
-  })
-
 })

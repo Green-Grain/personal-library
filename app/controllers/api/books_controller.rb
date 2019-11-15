@@ -15,7 +15,7 @@ class Api::BooksController < ApplicationController
       (@books == nil) ? @books = result : @books += result
     end
     if author != ""
-      result = Book.includes(:publisher, :authors, :evaluations).joins(:authors).where('authors.name LIKE ?', "%#{author}%")
+      result = Book.find_author_name(author)
       (@books == nil) ? @books = result : @books += result
     end
     # 重複している検索結果を排除
