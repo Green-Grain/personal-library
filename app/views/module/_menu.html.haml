@@ -43,17 +43,17 @@
           = fa_icon 'search'
           検索
         .menu__search-form__field
-          .menu__search-form__field--caption
+          .menu__search-form__field__caption
             = label_tag :title, '書籍名'
-          .menu__search-form__field--input
-            = text_field_tag :title_input, '', class: 'menu__search-form__field--input'
+          .menu__search-form__field__input
+            = text_field_tag :title_input, '', class: 'menu__search-form__field__input__title'
         .menu__search-form__field
-          %span.menu__search-form__field--caption
+          .menu__search-form__field__caption
             = label_tag :author, '著者名'
-          %span.menu__search-form__field--input
-            = text_field_tag :author_input, '', class: 'menu__search-form__field--input'
+          .menu__search-form__field__input
+            = text_field_tag :author_input, '', class: 'menu__search-form__field__input__author'
         .menu__search-form__field
-          %span.menu__search-form__field--caption
+          .menu__search-form__field__caption
             = label_tag :isbn, 'ISBN'
-          %span.menu__search-form__field--input
-            = number_field_tag :isbn_input, '', class: 'menu__search-form__field--input', maxlength: 13
+          .menu__search-form__field__input
+            = number_field_tag :isbn_input, '', class: 'menu__search-form__field__input__isbn', placeholder: "13桁の数字を入力", maxlength: 13
