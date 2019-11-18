@@ -65,6 +65,10 @@
         
       }
     }
+    &__find-btn {
+      display: block;
+      margin: 5px 10px 0 auto;
+    }
   }
   
   input[type=number]::-webkit-inner-spin-button,
