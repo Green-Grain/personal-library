@@ -61,7 +61,7 @@
   - if user_signed_in?
     -# 外部サイト（楽天）から検索
     .menu__search-form
-      = form_with url: new_book_path, method: 'GET' do |f|
+      = form_with(url: new_book_path, method: 'GET', local: true) do |f|
         %fieldset.menu__search-form__group
           %legend.menu__search-form__group__caption
             = fa_icon 'search'
