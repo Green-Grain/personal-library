@@ -6,19 +6,17 @@ class Book < ApplicationRecord
   has_many :evaluations
   belongs_to :publisher
 
+  # 全 book 検索
   def self.get_all
     shelf_books = self.includes(:publisher, :authors, :evaluations)
-    books = []
-    shelf_books.each do |shelf_book|
-      book = {title: shelf_book.title, isbn: shelf_book.isbn, image: shelf_book.image, link_url: shelf_book.link_url, publisher: shelf_book.publisher.name}
-      authors = []
-      shelf_book.authors.each do |author|
-        authors << author.name
-      end
-      book.store(:authors, authors)
-      books << book
-    end
-    return books
+    restore_to_hash(shelf_books)
+  end
+
+  # user 登録済み book 検索
+  def self.get_all_by_user(user_id)
+    user = User.find(user_id)
+    shelf_books = user.books.includes(:publisher, :authors, :evaluations)
+    restore_to_hash(shelf_books)
   end
 
   def self.find_title(keyword)
@@ -29,12 +27,13 @@ class Book < ApplicationRecord
     self.includes(:publisher, :authors, :evaluations).where('isbn LIKE ?', "%#{keyword}%")
   end
   
-  def self.find_auhtor_name(keyword)
-    self.includes(:publisher, :authors, :evaluations).joins(:authors).where('authors.name LIKE ?', "%#{author}%")
+  def self.find_author_name(keyword)
+    self.includes(:publisher, :authors, :evaluations).joins(:authors).where('authors.name LIKE ?', "%#{keyword}%")
   end
 
+  # 曖昧検索
   def self.search(title, author, isbn)
-    # 一気に検索したかったが適切な処理がわからないので、検索key毎の検索で妥協する
+    # 一気に検索したかったが適切な処理がわからないので、検索key毎の検索で妥協する('A`)
     books = nil
     if title != ""
       result = Book.find_title(title)
@@ -49,7 +48,7 @@ class Book < ApplicationRecord
       (books == nil) ? books = result : books += result
     end
     # 重複している検索結果を排除
-    books =  books.uniq
+    books = books.uniq
   end
 
   # 楽天APIで書籍を検索（新規登録候補）
@@ -73,5 +72,20 @@ class Book < ApplicationRecord
     end
     puts "RakutenWebService::Books::Book.search result count: #{results.count}" unless results != nil
     return results
+  end
+
+  private
+  def self.restore_to_hash(shelf_books)
+    books = []
+    shelf_books.each do |shelf_book|
+      book = {title: shelf_book.title, isbn: shelf_book.isbn, image: shelf_book.image, link_url: shelf_book.link_url, publisher: shelf_book.publisher.name}
+      authors = []
+      shelf_book.authors.each do |author|
+        authors << author.name
+      end
+      book.store(:authors, authors)
+      books << book
+    end
+    return books
   end
 end

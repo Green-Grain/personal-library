@@ -1,0 +1,22 @@
+.book__right__option__evaluation
+  .book__right__option__evaluation--positive
+    = fa_icon 'thumbs-up', class: 'icon'
+    -# controller で集計した値を表示しよう
+    (T.B.D.)
+  .book__right__option__evaluation--negative
+    = fa_icon 'thumbs-down', class: 'icon'
+    (T.B.D.)
+.book__right__option__bookmark
+  -# 自分の書架にない場合は登録、ある場合は編集
+  = fa_icon 'bookmark'
+  My書架に追加
+.book__right__option__edit
+  = fa_icon 'edit'
+  評価を編集
+.book__right__option__link
+  = link_to "#{book[:link_url]}" do
+    .book__right__option__link--rakuten
+      = fa_icon 'external-link'
+      楽天ブックス
+  -# .book__right__option__link--amazon
+  -#   LinkAMZN

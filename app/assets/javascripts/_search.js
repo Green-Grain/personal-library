@@ -1,7 +1,50 @@
 $(document).on('turbolinks:load', function() {
   // books要素再構築
-  var restructureBooksTreeElement = function(results) {
-    // ToDo
+  var createBookElement = function(book) {
+    authorsName = ""
+    book.authors.forEach(function(author) {
+      authorsName += `${author.name}／`
+    })
+    authorsName = authorsName.slice(0, -1);
+    var book =  `<div class='book'>
+                  <div class='book__left'>
+                    <div class='book__left__image'>
+                      <img src='${book.image}', alt='${book.title}の画像' />
+                    </div>
+                  </div>
+                  <div class='book__right'>
+                    <div class='book__right__info'>
+                      <div class='book__right__info--title'>
+                        <span class='caption'>書籍名</span>
+                        <span class='content'>
+                          ${book.title}
+                        </span>
+                      </div>
+                      <div class='book__right__info--author'>
+                        <span class='caption'>著者</span>
+                        <span class='content'>
+                          ${authorsName}
+                        </span>
+                      </div>
+                      <div class='book__right__info--publisher'>
+                        <span class='caption'>出版社</span>
+                        <span class='content'>
+                          ${book.publisher.name}
+                        </span>
+                      </div>
+                      <div class='book__right__info--isbn'>
+                        <span class='caption'>ISBN</span>
+                        <span class='content'>
+                          ${book.isbn}
+                        </span>
+                      </div>
+                    </div>
+                    <div class='book__right__option'>
+                    </div>
+                  </div>
+                </div>
+                `;
+    return book;
   }
   // インクリメンタルサーチ実行
   var execIncrementalSearch = function () { 
@@ -18,9 +61,20 @@ $(document).on('turbolinks:load', function() {
       },
       dataType: 'json'
     })
-    .done(function(result) {
-      console.log(result);
-      // resultでbooks要素を再構築
+    .done(function(results) {
+      console.log(results);
+      var rootElement = $('.books');
+      rootElement.empty();
+      if (results.length > 0) {
+        // resultでbooks要素を再構築
+        results.forEach(function(book) {
+          var bookElement = createBookElement(book);
+          rootElement.append(bookElement);
+        })
+      }
+      else {
+        rootElement.append('該当なし');
+      }
     })
     .fail(function(data) {
       console.log('failed incremental search');
@@ -31,28 +85,4 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
     execIncrementalSearch();
   })
-  // 楽天ブックス検索 実行
-  // var execRackutenBooksSearch = function () { 
-  //   var inputTitle  = $('#book_title_external').val();
-  //   var inputAuthor = $('#book_author_external').val();
-  //   var inputIsbn   = $('#book_isbn_external').val();
-  //   console.log('title: ' + inputTitle);
-  //   console.log('author: ' + inputAuthor);
-  //   console.log('isbn: ' + inputIsbn);
-  //   $.get('https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?', {
-  //     applicationId: "1011752311455155114",
-  //     format: 'json',
-  //     title:  inputTitle,
-  //     author: inputAuthor,
-  //     isbn:   inputIsbn,
-  //     booksGenreId: '001'
-  //   }, function(results) {
-  //     console.log(results);
-  //   })
-  // }
-  // // 外部サイトから書籍情報を検索
-  // $('#external-find-btn').on('click', function(e) {
-  //   e.preventDefault();
-  //   execRackutenBooksSearch();
-  // })
 })

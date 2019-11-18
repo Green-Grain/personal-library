@@ -1,0 +1,4 @@
+.book__right__option__add
+  = link_to books_path(isbn: book[:isbn], title: book[:title], author: book[:authors][0], publisher: book[:publisher], image: book[:image], link_url: book[:link_url]), method: 'post' do
+    = fa_icon 'plus'
+    書架に追加

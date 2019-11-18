@@ -1,4 +1,4 @@
 .main
   = render 'module/menu'
   .books
-    = render partial: 'book', collection: @candidates
+    = render partial: 'books/book_required', locals: {books: @candidates, option: 'books/book_option_new'}

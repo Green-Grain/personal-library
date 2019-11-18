@@ -45,7 +45,7 @@
           width: 100%;
         }
       }
-      &__supplement {
+      &__option {
         width: 100%;
         margin-top: -3px;
         display: flex;
@@ -60,14 +60,17 @@
 
           }
           &--negative {
-            margin-left: 30px;
+            margin-left: 20px;
           }
           .icon {
             font-size: 1.2rem;
           }
         }
-        &__edit {
+        &__bookmark {
           @include link-button();
+        }
+        &__edit {
+          @include tmp-button();
         }
         &__link {
           display: flex;
@@ -79,6 +82,9 @@
           //   margin-left: 10px;
           //   background-color: $tmp_bgcolor;
           // }
+        }
+        &__add {
+          @include link-button();
         }
       }
     }
