@@ -3,7 +3,7 @@ class Api::BooksController < ApplicationController
     title   = params[:title]
     author  = params[:author]
     isbn    = params[:isbn]
-    if (title == "") && (author == "") && (isbn == "")
+    if title.empty? && author.empty? && isbn.empty?
       @books = Book.get_all(false)
     else
       @books = Book.search(title, author, isbn)
