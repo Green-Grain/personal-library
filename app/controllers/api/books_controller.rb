@@ -3,8 +3,11 @@ class Api::BooksController < ApplicationController
     title   = params[:title]
     author  = params[:author]
     isbn    = params[:isbn]
-    return nil if (title == "") && (author == "") && (isbn == "")
-    @books = Book.search(title, author, isbn)
+    if (title == "") && (author == "") && (isbn == "")
+      @books = Book.get_all(false)
+    else
+      @books = Book.search(title, author, isbn)
+    end
     respond_to do |format|
       format.html
       format.json

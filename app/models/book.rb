@@ -7,9 +7,13 @@ class Book < ApplicationRecord
   belongs_to :publisher
 
   # 全 book 検索
-  def self.get_all
+  def self.get_all(is_convert_to_hash = true)
     shelf_books = self.includes(:publisher, :authors, :evaluations)
-    restore_to_hash(shelf_books)
+    if true == is_convert_to_hash
+      return restore_to_hash(shelf_books)
+    else
+      return shelf_books
+    end
   end
 
   # user 登録済み book 検索
