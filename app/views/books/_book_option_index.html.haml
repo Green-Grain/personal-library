@@ -7,15 +7,15 @@
     = fa_icon 'thumbs-down', class: 'icon'
     (T.B.D.)
 - if user_signed_in?
-  -# 自分の書架にない場合は登録、ある場合は非表示
-  - unless Book.get_book_by_user(current_user.id, book[:id])
+  -# 自分の書架にある場合は登録不可、ない場合は登録可
+  - if Book.registered?(current_user.id, book[:id])
+    .book__right__option__bookmark--disable
+      My書架に登録済み
+  - else
     .book__right__option__bookmark--enable
       = link_to add_shelf_book_path(book[:id]), method: 'post' do
         = fa_icon 'bookmark'
         My書架に追加
-  - else
-    .book__right__option__bookmark--disable
-      My書架に登録済み
   .book__right__option__edit
     = fa_icon 'edit'
     評価を編集

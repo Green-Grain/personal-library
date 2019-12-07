@@ -23,9 +23,9 @@ class Book < ApplicationRecord
     restore_to_hash(shelf_books)
   end
 
-  def self.get_book_by_user(user_id, book_id)
-    user = User.find(user_id)
-    shelf_book = user.books.includes(:publisher, :authors, :evaluations)
+  # book が登録済みか？
+  def self.registered?(user_id, book_id)
+    Book.find(book_id).users.exists?(user_id)
   end
 
   def self.find_title(keyword)
