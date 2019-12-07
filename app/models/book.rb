@@ -23,6 +23,11 @@ class Book < ApplicationRecord
     restore_to_hash(shelf_books)
   end
 
+  def self.get_book_by_user(user_id, book_id)
+    user = User.find(user_id)
+    shelf_book = user.books.includes(:publisher, :authors, :evaluations)
+  end
+
   def self.find_title(keyword)
     self.includes(:publisher, :authors, :evaluations).where('title LIKE ?', "%#{keyword}%")
   end

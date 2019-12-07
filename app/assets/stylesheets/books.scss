@@ -67,7 +67,12 @@
           }
         }
         &__bookmark {
-          @include link-button();
+          &--enable {
+            @include link-button();
+          }
+          &--disable {
+            @include tmp-button();
+          }
         }
         &__edit {
           @include tmp-button();
