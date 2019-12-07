@@ -9,8 +9,9 @@
 - if user_signed_in?
   .book__right__option__bookmark
     -# 自分の書架にない場合は登録、ある場合は編集
-    = fa_icon 'bookmark'
-    My書架に追加
+    = link_to add_shelf_book_path(book[:id]), method: 'post' do
+      = fa_icon 'bookmark'
+      My書架に追加
   .book__right__option__edit
     = fa_icon 'edit'
     評価を編集

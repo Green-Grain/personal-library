@@ -82,7 +82,7 @@ class Book < ApplicationRecord
   def self.restore_to_hash(shelf_books)
     books = []
     shelf_books.each do |shelf_book|
-      book = {title: shelf_book.title, isbn: shelf_book.isbn, image: shelf_book.image, link_url: shelf_book.link_url, publisher: shelf_book.publisher.name}
+      book = {id: shelf_book.id, title: shelf_book.title, isbn: shelf_book.isbn, image: shelf_book.image, link_url: shelf_book.link_url, publisher: shelf_book.publisher.name}
       authors = []
       shelf_book.authors.each do |author|
         authors << author.name

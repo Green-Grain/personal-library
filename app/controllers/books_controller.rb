@@ -27,6 +27,12 @@ class BooksController < ApplicationController
     redirect_to root_path
   end
 
+  def add_shelf
+    # ユーザのMY書架に書籍を登録する
+    BookUser.create!(get_bookmark_params)
+    redirect_to action: 'index'
+  end
+
   private
   def get_keyword
     params.permit(:title, :author, :isbn)
@@ -34,5 +40,9 @@ class BooksController < ApplicationController
 
   def get_book_info
     params.permit(:title, :author, :publisher, :isbn, :image, :link_url)
+  end
+
+  def get_bookmark_params
+    {book_id: params.permit(:id)[:id]}.merge(user_id: current_user.id)
   end
 end
