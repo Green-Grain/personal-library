@@ -1,11 +1,10 @@
 .book__right__option__evaluation
   .book__right__option__evaluation--positive
     = fa_icon 'thumbs-up', class: 'icon'
-    -# controller で集計した値を表示しよう
-    (T.B.D.)
+    = Book.get_evaluation_num(book[:id], true)
   .book__right__option__evaluation--negative
     = fa_icon 'thumbs-down', class: 'icon'
-    (T.B.D.)
+    = Book.get_evaluation_num(book[:id], false)
 - if user_signed_in?
   -# 自分の書架にある場合は登録不可、ない場合は登録可
   - if Book.registered?(current_user.id, book[:id])

@@ -83,6 +83,27 @@ class Book < ApplicationRecord
     return results
   end
 
+  # 本の評価件数を取得
+  def get_evaluation_num(is_positive)
+    positive_value = (true == is_positive) ? 1 : 0
+    evaluations = self.evaluations.where('positive LIKE ?', "#{positive_value}")
+    if evaluations.blank?
+      return 0
+    else
+      puts evaluations[0].positive
+      return evaluations.count
+    end
+  end
+
+  def self.get_evaluation_num(book_id, is_positive)
+    book = Book.find(book_id)
+    if book.blank?
+      return 0
+    else
+      return book.get_evaluation_num(is_positive)
+    end
+  end
+
   private
   def self.restore_to_hash(shelf_books)
     books = []
