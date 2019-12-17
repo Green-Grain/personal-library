@@ -76,4 +76,10 @@
     -webkit-appearance: none;
     margin: 0;
   }
+
+  &__credit {
+    padding: 0 10px;
+    position: absolute;
+    bottom: 0px;
+  }
 }
