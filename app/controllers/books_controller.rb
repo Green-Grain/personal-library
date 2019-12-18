@@ -5,8 +5,11 @@ class BooksController < ApplicationController
 
   def new
     keyword = get_keyword
-    results = Book.find_rakuten_books(keyword[:title], keyword[:author], keyword[:isbn])
     @candidates = []
+    results = Book.find_rakuten_books(keyword[:title], keyword[:author], keyword[:isbn])
+    if nil == results
+      return
+    end
     results.each do |result|
       @candidates << {title: result.title, authors: [result.author], isbn: result.isbn, image: result.large_image_url, link_url: result.item_url, publisher: result.publisher_name}
     end

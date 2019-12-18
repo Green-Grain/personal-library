@@ -63,6 +63,13 @@ class Book < ApplicationRecord
   # 楽天APIで書籍を検索（新規登録候補）
   BOOK_GENRE_ID = '001'
   def self.find_rakuten_books(title, author, isbn)
+    if false == ApiHistory.is_usable?
+      puts '*****************************************'
+      puts '**** 楽天APIが使用できませんでした。 ****'
+      puts '**** 当月のAPI使用回数が最大です。   ****'
+      puts '*****************************************'
+      return nil
+    end
     results = nil
     if isbn != ""
       puts "search by ISBN"
@@ -79,6 +86,7 @@ class Book < ApplicationRecord
         results = RakutenWebService::Books::Book.search(title: title, booksGenreId: BOOK_GENRE_ID)
       end
     end
+    ApiHistory.increment_call_count
     puts "RakutenWebService::Books::Book.search result count: #{results.count}" unless results != nil
     return results
   end
