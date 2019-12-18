@@ -91,6 +91,9 @@
         &__add {
           @include link-button();
         }
+        &__disable {
+          @include tmp-button();
+        }
       }
     }
   }

@@ -112,6 +112,12 @@ class Book < ApplicationRecord
     end
   end
 
+  # 書架に書籍が登録済みか判定
+  def self.is_registered?(isbn)
+    Book.where('isbn = ?', "#{isbn}").exists?
+  end
+
+
   private
   def self.restore_to_hash(shelf_books)
     books = []
