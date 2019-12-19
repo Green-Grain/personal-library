@@ -19,7 +19,7 @@
     = fa_icon 'edit'
     評価を編集
 .book__right__option__link
-  = link_to "#{book[:link_url]}" do
+  = link_to "#{book[:link_url]}", target: '_blank' do
     .book__right__option__link--rakuten
       = fa_icon 'external-link'
       楽天ブックス
