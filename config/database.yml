@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: personal-library_production
-  username: personal-library
+  username: root
   password: <%= ENV['PERSONAL-LIBRARY_DATABASE_PASSWORD'] %>
