@@ -11,8 +11,10 @@ working_directory "#{app_path}/current"
 pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 
 #ポート番号を指定
-# listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
-listen 80
+listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
+puts '*******************************************'
+puts "#{app_path}/shared/tmp/sockets/unicorn.sock"
+puts '*******************************************'
 #エラーのログを記録するファイルを指定
 stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
 
