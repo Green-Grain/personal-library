@@ -1,21 +1,20 @@
 $(document).on('turbolinks:load', function() {
-  var getBookContent = function(className, id){
-    return $(className + id).find('.content').text().trim();
+  var getBookContent = function(book, infoItem){
+    return book.find(`${infoItem} .content`).text().trim();
   };
-  var disbleRegisterButton = function(candidateId) {
-    var element = $('.book__right__option__add' + candidateId);
+  var disbleRegisterButton = function(book) {
+    var element = book.find('.book__right__option__add');
     element.removeClass('book__right__option__add');
     element.addClass('book__right__option__disable');
     element.text('書架に登録済みです');
   };
-  var regitserBookShelf = function(candidateId) {
-    var bookId = `#${candidateId}`;
-    var isbn = getBookContent('.book__right__info--isbn', bookId);
-    var title = getBookContent('.book__right__info--title', bookId);
-    var author = getBookContent('.book__right__info--author', bookId);
-    var publisher = getBookContent('.book__right__info--publisher', bookId);
-    var image = $('.book__left__image' + bookId).find('img').attr('src');
-    var link_url = $('.book__right__option__info'+ bookId).attr('url');
+  var regitserBookShelf = function(book) {
+    var isbn = getBookContent(book, '.book__right__info--isbn');
+    var title = getBookContent(book, '.book__right__info--title');
+    var author = getBookContent(book, '.book__right__info--author');
+    var publisher = getBookContent(book, '.book__right__info--publisher');
+    var image = book.find('.book__left__image img').attr('src');
+    var link_url = book.find('.book__right__option__info').attr('url');
     $.ajax({
       type:     'POST',
       url:      '/books',
@@ -31,14 +30,14 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function() {
       console.log("書架への追加に成功しました。");
-      disbleRegisterButton(bookId);
+      disbleRegisterButton(book);
     })
     .fail(function() {
       console.log("書架への追加に失敗しました。");
     });
   };
   $('.book__right__option__add').on('click', function() {
-    var id = $(this).attr('id');
-    regitserBookShelf(id);
+    var rootElement = $(this).closest('.book');
+    regitserBookShelf(rootElement);
   });
 });
