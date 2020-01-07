@@ -2,7 +2,7 @@
   .book__right__option__disable
     書架に登録済みです
 - else
-  .book__right__option__add
-    = link_to books_path(isbn: book[:isbn], title: book[:title], author: book[:authors][0], publisher: book[:publisher], image: book[:image], link_url: book[:link_url]), method: 'post' do
-      = fa_icon 'plus'
-      書架に追加
+  .book__right__option__add{id: "candidate_#{id}"}
+    .book__right__option__info{id: "candidate_#{id}", type: 'hidden', url: book[:link_url]}
+    = fa_icon 'plus'
+    書架に追加
