@@ -11,8 +11,8 @@
     .book__right__option__bookmark--disable
       My書架に登録済み
   - else
-    .book__right__option__bookmark--enable
-      = link_to add_shelf_book_path(book[:id]), method: 'post' do
+    = link_to add_shelf_book_path(book[:id]), method: 'post' do
+     .book__right__option__bookmark--enable
         = fa_icon 'bookmark'
         My書架に追加
   .book__right__option__edit
