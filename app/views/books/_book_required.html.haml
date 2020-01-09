@@ -2,8 +2,8 @@
   %p 該当する本はありませんでした。
   %p または、楽天API使用回数が最大に達しています。
 - else
-  - books.each_with_index do |book, index|
-    .book{id: "candidate_#{index}"}
+  - books.each do |book|
+    .book
       .book__left
         .book__left__image
           = image_tag book[:image], alt: "#{book[:title]}の画像" if book[:image].present?
@@ -29,4 +29,4 @@
             %span.content
               = book[:isbn]
         .book__right__option
-          = render partial: option, locals: {book: book, id: index}
+          = render partial: option, locals: {book: book}
