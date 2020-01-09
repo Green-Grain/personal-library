@@ -3,7 +3,7 @@
   %p または、楽天API使用回数が最大に達しています。
 - else
   - books.each do |book|
-    .book
+    .book{id: book[:id]}
       .book__left
         .book__left__image
           = image_tag book[:image], alt: "#{book[:title]}の画像" if book[:image].present?

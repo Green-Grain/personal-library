@@ -36,7 +36,10 @@ class BooksController < ApplicationController
   def add_shelf
     # ユーザのMY書架に書籍を登録する
     BookUser.create!(get_bookmark_params)
-    redirect_to action: 'index'
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.json
+    end
   end
 
   private

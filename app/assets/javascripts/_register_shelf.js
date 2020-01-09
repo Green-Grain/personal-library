@@ -16,8 +16,8 @@ $(document).on('turbolinks:load', function() {
     var image = book.find('.book__left__image img').attr('src');
     var link_url = book.find('.book__right__option__info').attr('url');
     $.ajax({
-      type:     'POST',
-      url:      '/books',
+      type: 'POST',
+      url:  '/books',
       data: {
         isbn:   isbn,
         title:  title,
